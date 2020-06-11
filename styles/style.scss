@@ -465,14 +465,30 @@ body {
   }
 }
 
+/* -------------------------------------------------------------------------------------------------------------- CONTACT SECTION ------------ */
+#mail {
+  padding-top: $section-top-padding;
+  padding-bottom: $section-bottom-padding;
+  position: relative;
+  a {
+    transition: all 200ms ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    color: #000000;
+    text-align: center;
+    &:hover {
+      text-decoration: none;
+      transform: translateX(-50%) scale(1.08);
+      color: #636363;
+    }
+  }
+}
 /* -------------------------------------------------------------------------------------------------------------- FOOTER SECTION ------------ */
 
 footer {
   padding-top: $section-top-padding;
   padding-bottom: 10px;
-  p {
-    font-size: 14px !important;
-  }
 }
 
 /* -------------------------------------------------------------------------------------------------------------- LOADING SECTION ------------ */
