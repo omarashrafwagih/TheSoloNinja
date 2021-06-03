@@ -7,12 +7,10 @@
 }
 html {
   scroll-behavior: smooth;
-  user-select: none;
 }
 body {
   font-family: $primary-font;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 ::selection {
@@ -21,7 +19,6 @@ body {
 
 %h2 {
   font-weight: bold;
-  text-align: center;
   font-size: clamp(2rem, 4vw, 5rem);
   color: $grey-color;
   text-transform: uppercase;
@@ -32,113 +29,274 @@ body {
   }
 }
 /* -------------------------------------------------------------------------------------------------------------- HERO SECTION ------------ */
-@import url("https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap");
+
 #hero {
+  .hideshow {
+    transform: translateX(100%);
+  }
+  position: relative;
   overflow: hidden;
   height: 100vh;
-  width: 100vw;
-  background-color: $grey-color;
-  // font-family: 'La Belle Aurore', cursive;
-}
-/* -------------------------------------------------------------------------------------------------------------- SKILLS SECTION ------------ */
-#skills {
-  padding: 30px 100px;
-  h2 {
-    @extend %h2;
+  width: 100%;
+  display: flex;
+  color: #ffffff;
+
+  #left {
+    background-color: #000000;
+    height: 100%;
+    width: 35%;
+    padding-left: 20px;
+
+    h2 {
+      text-transform: uppercase;
+      font-size: 30px;
+      text-align: left;
+      margin-top: 150px;
+      letter-spacing: 1px;
+    }
   }
-  .cont {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 70%;
-    margin: auto;
-    .skill {
-      color: black;
-      font-size: 1.2rem;
-      &::after {
-        content: "";
-        display: inline-block;
-        margin: 0px 10px;
-        width: 10px;
-        height: 10px;
-        background-color: $yellowish-color;
-        border: 1px solid $grey-color;
-        border-radius: 50%;
+  #right {
+    height: 100%;
+    width: 65%;
+    background-color: #000000;
+    nav {
+      background-color: #000000;
+      border-bottom: 1px solid $yellowish-color;
+      height: 55px;
+      ul {
+        li {
+          display: inline-block;
+          padding: 10px 30px;
+          a {
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            &::after {
+              display: block;
+              content: "";
+              width: 0%;
+              height: 3px;
+              background-color: $yellowish-color;
+              border-radius: 30px;
+              transition: all 800ms ease;
+            }
+            &:hover {
+              text-decoration: none;
+              &::after {
+                width: 100%;
+              }
+            }
+          }
+        }
       }
     }
-  }
-  hr {
-    width: 90%;
-    margin: 20px auto -32px auto;
-    border-color: rgba(63, 63, 63, 0.1);
-  }
-}
-
-@media (max-width: 768px) {
-  #skills {
-    padding: 30px;
-    .cont {
-      width: 100%;
+    img {
+      max-width: 100%;
+      min-width: 1000px;
     }
   }
-}
-/* -------------------------------------------------------------------------------------------------------------- ABOUT SECTION ------------ */
 
-#about {
-  padding: 30px 100px;
-  h2 {
-    @extend %h2;
+  #intro {
+    position: absolute;
+    top: 55%;
+    left: 10%;
+    h1 {
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: clamp(1rem, 8vw, 5rem);
+    }
+    h2 {
+      color: #000000;
+      background-color: $yellowish-color;
+      padding: 8px 15px;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
   }
 
-  .cont {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+  #down {
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    background-color: #000000;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    animation: DownAnimation 350ms alternate infinite;
+    img {
+      max-width: 20px;
+    }
+  }
+
+  @keyframes DownAnimation {
+    from {
+      transform: translateY(8px);
+    }
+
+    to {
+      transform: translateY(0px);
+    }
+  }
+
+  #menu-icon {
+    display: none;
+    z-index: 4;
+    position: absolute;
+    top: 45px;
+    right: 50px;
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+    direction: rtl;
     div {
-      margin: 0px 40px;
-      #me {
-        max-width: 100%;
-        min-width: 220px;
-        max-height: 320px;
-        object-fit: cover;
+      cursor: pointer;
+      height: 2px;
+      background-color: #ffffff;
+      &:nth-of-type(1) {
+        transition: all 200ms ease;
+        background-color: #ffffff;
+        width: 32px;
       }
-      h3 {
-        font-weight: bold;
-        display: inline-block;
-        text-transform: uppercase;
+      &:nth-of-type(2) {
+        transition: all 200ms ease;
+        background-color: #ffffff;
+        margin-top: 8px;
+        width: 17px;
+      }
+      &:nth-of-type(3) {
+        transition: all 200ms ease;
+        background-color: #ffffff;
+        margin-top: 8px;
+        width: 25px;
+      }
+    }
+  }
+}
+
+#mobile-menu {
+  display: hidden;
+  transition: all 500ms ease;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 25%;
+  min-width: 250px;
+  background-color: #000000;
+  border-left: 2px solid yellow;
+  ul {
+    text-align: center;
+    margin-top: 20vh;
+    li {
+      margin-bottom: 35px;
+      font-size: 18px;
+      text-transform: uppercase;
+      a {
+        color: #ffffff;
         &::after {
           display: block;
           content: "";
-          height: 5px;
-          width: 100%;
+          height: 2px;
+          width: 0%;
+          transition: all 800ms ease;
           background-color: $yellowish-color;
         }
-      }
-      p {
-        margin-top: 10px;
-      }
-      a {
-        display: inline-block;
-        background-color: $grey-color;
-        color: white;
-        padding: 13px 18px;
-        border-radius: 6px;
-        text-align: center;
-        overflow: hidden;
-        margin-top: 20px;
-        text-decoration: none;
-        transition: background-color 150ms ease;
         &:hover {
-          background-color: #1b1b1be7;
-        }
-        &:active {
-          transform: scale(0.98);
+          text-decoration: none;
+          &::after {
+            width: 100%;
+          }
         }
       }
     }
   }
+}
 
+@media (max-width: 1285px) {
+  #hero {
+    #left {
+      h2 {
+        position: absolute;
+        top: 40px;
+        z-index: 2;
+      }
+    }
+    #right {
+      nav {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 835px) {
+  #hero {
+    #right {
+      nav {
+        display: none;
+      }
+    }
+    #menu-icon {
+      display: block;
+    }
+    #mobile-menu {
+      display: block;
+    }
+  }
+}
+
+@media (max-height: 550px) {
+  #hero {
+    #left {
+      h2 {
+        font-size: 20px;
+        margin-top: 100px;
+      }
+    }
+    #intro {
+      h1 {
+        font-size: clamp(1rem, 3vw, 5rem);
+      }
+    }
+    #down {
+      display: none;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------------------------------------------- ABOUT SECTION ------------ */
+
+#about {
+  padding-top: $section-top-padding;
+  padding-bottom: $section-bottom-padding;
+  h2 {
+    @extend %h2;
+  }
+  #me {
+    max-width: 100%;
+    min-width: 220px;
+    max-height: 320px;
+    object-fit: cover;
+  }
+  h3 {
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+    &::after {
+      display: block;
+      content: "";
+      height: 5px;
+      width: 100%;
+      background-color: $yellowish-color;
+    }
+  }
   #social {
     margin-top: 50px;
     display: flex;
@@ -160,30 +318,22 @@ body {
 
 @media (max-width: 768px) {
   #about {
-    padding: 30px 0px;
-    .cont {
-      flex-wrap: wrap;
-      div {
-        h3 {
-          margin-top: 20px;
-          margin-bottom: 20px;
-          display: block;
-          text-align: center;
-          &::after {
-            width: 50%;
-            margin: 0 auto;
-          }
-        }
-        p {
-          text-align: center;
-        }
-        a {
-          display: block;
-          max-width: 220px;
-          margin-left: auto;
-          margin-right: auto;
-        }
+    #me {
+      max-height: none;
+      filter: grayscale(0%);
+    }
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: block;
+      text-align: center;
+      &::after {
+        width: 50%;
+        margin: 0 auto;
       }
+    }
+    p {
+      text-align: center;
     }
   }
 }
@@ -191,47 +341,46 @@ body {
 /* -------------------------------------------------------------------------------------------------------------- PORTFOLIO SECTION ------------ */
 
 #portfolio {
-  position: relative;
-  padding: 30px 100px;
+  padding-top: $section-top-padding;
+  padding-bottom: $section-bottom-padding;
   background-color: #ebebeb;
-  text-align: center;
-  padding-left: 150px;
-  padding-right: 150px;
+  position: relative;
   h2 {
     @extend %h2;
   }
-  .cont {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    .item {
-      overflow: hidden;
-      cursor: pointer;
-      width: 30%;
-      margin-bottom: 40px;
-      a {
+
+  .item {
+    position: relative;
+    margin-bottom: 40px;
+    a {
+      &::after {
+        transition: all 300ms ease;
+        content: "Click to preview";
+        width: 100%;
+        background-color: #000000;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 5px;
+      }
+
+      &:hover {
         text-decoration: none;
         &::after {
-          content: "Click to preview";
-          width: 100%;
-          background-color: black;
-          display: block;
-          color: white;
-          padding: 5px;
+          letter-spacing: 1px;
         }
-        img {
-          max-width: 100%;
-          transition: all 250ms ease-in-out;
-          transform-origin: bottom;
-          &:hover {
-            transform: scale(1.1);
-          }
+      }
+      img {
+        transition: all 300ms ease;
+        min-width: 100%;
+        filter: grayscale(50%);
+        &:hover {
+          transform: scale(0.95);
+          filter: grayscale(0%);
         }
       }
     }
   }
-
   #star {
     max-width: 70px;
     position: absolute;
@@ -251,29 +400,25 @@ body {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 576px) {
   #portfolio {
-    padding-left: 20px;
-    padding-right: 20px;
-    .cont {
-      .item {
-        width: 40%;
+    .item {
+      a {
+        &:hover {
+          &::after {
+            letter-spacing: 0px;
+          }
+        }
+        img {
+          filter: grayscale(0%);
+          &:hover {
+            transform: scale(1);
+          }
+        }
       }
     }
     #star {
-      max-width: 40px;
-      bottom: 15px;
-      right: 15px;
-    }
-  }
-}
-
-@media (max-width: 576px) {
-  #portfolio {
-    .cont {
-      .item {
-        width: 100%;
-      }
+      display: none;
     }
   }
 }
@@ -281,13 +426,11 @@ body {
 /* -------------------------------------------------------------------------------------------------------------- EXPERIENCES SECTION ------------ */
 
 #exp {
-  padding: 30px 100px;
+  padding-top: $section-top-padding;
+  padding-bottom: $section-bottom-padding;
   box-shadow: 0px 3px 18px -10px $grey-color;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .item {
-    margin: 15px;
+  .row {
+    margin: 0 auto;
     img {
       max-height: 60px;
       max-width: 100%;
@@ -301,11 +444,9 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   #exp {
-    padding: 30px 0px;
-    .item {
-      margin: 0px 10px;
+    .row {
       img {
         filter: opacity(1);
       }
@@ -313,27 +454,30 @@ body {
   }
 }
 
+/* -------------------------------------------------------------------------------------------------------------- CONTACT SECTION ------------ */
+#mail {
+  padding-top: $section-top-padding;
+  padding-bottom: $section-bottom-padding;
+  position: relative;
+  a {
+    transition: all 200ms ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    color: #000000;
+    text-align: center;
+    &:hover {
+      text-decoration: none;
+      transform: translateX(-50%) scale(1.08);
+      color: #636363;
+    }
+  }
+}
 /* -------------------------------------------------------------------------------------------------------------- FOOTER SECTION ------------ */
 
 footer {
-  padding: 30px 0px;
-  text-align: center;
-  font-size: 80%;
-  color: #6c757d;
-  #mail {
-    a {
-      font-size: 16px;
-      padding-bottom: 10px;
-      display: block;
-      transition: transform 200ms ease;
-      color: black;
-      text-decoration: none;
-      &:hover {
-        transform: scale(1.05);
-        color: #636363;
-      }
-    }
-  }
+  padding-top: $section-top-padding;
+  padding-bottom: 10px;
 }
 
 /* -------------------------------------------------------------------------------------------------------------- LOADING SECTION ------------ */
@@ -345,7 +489,7 @@ footer {
   width: 100%;
   top: 0;
   left: 0;
-  background-color: #dbdbdb;
+  background-color: #ebebeb;
   .cont {
     height: 80px;
     width: 80px;
