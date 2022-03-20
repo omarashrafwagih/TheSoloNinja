@@ -60,6 +60,19 @@ downBtn.addEventListener("click", function () {
   window.location.href = "#about";
 });
 
+// ------------------------------------------------------------------------ Parallax Effect Function -------
+
+const mainHeading = document.querySelector("h1");
+const japaneseHeading = document.querySelector(".japanese");
+const ninjaImage = document.querySelector("#right img");
+
+window.addEventListener("scroll", () => {
+  let scrolledFromTop = window.scrollY;
+  mainHeading.style.transform = `translateX(${scrolledFromTop * 0.3}px)`;
+  japaneseHeading.style.transform = `translateY(${scrolledFromTop * 0.75}px)`;
+  ninjaImage.style.transform = `translateY(${scrolledFromTop * 0.35}px)`;
+});
+
 // ------------------------------------------------------------------------ Loading Screen Temporary -------
 
 let loading = document.getElementById("loading");
